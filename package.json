@@ -1,0 +1,25 @@
+{
+  "name": "with-redux-toolkit",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "1.5.0",
+    "@tinkoff/invest-openapi-js-sdk": "^1.2.18",
+    "@types/react": "^17.0.4",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "classnames": "^2.3.1",
+    "next": "latest",
+    "node-sass": "^4.14.1",
+    "query-string": "^7.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-redux": "7.2.2",
+    "react-trend": "^1.2.5",
+    "typescript": "^4.2.4"
+  },
+  "license": "MIT"
+}
