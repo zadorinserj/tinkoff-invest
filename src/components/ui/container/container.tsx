@@ -7,10 +7,11 @@ import { ContainerProps } from './types';
 const cx = classNames.bind(styles);
 export const Container = ({
     className = '',
+    fullWidth = false,
     children,
 }: ContainerProps) => {
     return (
-        <div className={ cx(styles.container, className) }>
+        <div className={ cx(styles.container, className, { fullWidth }) }>
             { children }
         </div>
     )

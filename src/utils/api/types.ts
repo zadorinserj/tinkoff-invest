@@ -1,6 +1,7 @@
 export type Currency = "RUB" | "USD" | "EUR" | "GBP" | "HKD" | "CHF" | "JPY" | "CNY" | "TRY";
 export type InstrumentType = "Stock" | "Currency" | "Bond" | "Etf";
 export type Depth = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export type CandleInterval = '1min' | '2min' | '3min' | '5min' | '10min' | '15min' | '30min' | 'hour' | 'day' | 'week' | 'month';
 
 export type MarketInstrument = {
     figi: string;
@@ -77,4 +78,27 @@ export type OrderBook = {
     closePrice?: number;
     limitUp?: number;
     limitDown?: number;
+};
+
+export type CandlesResponse = {
+    trackingId: string;
+    status: string;
+    payload: Candles;
+};
+
+export type Candles = {
+    figi: string;
+    interval: CandleInterval;
+    candles: Candle[];
+};
+
+export type Candle = {
+    figi: string;
+    interval: CandleInterval;
+    o: number;
+    c: number;
+    h: number;
+    l: number;
+    v: number;
+    time: string;
 };

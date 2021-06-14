@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 
-import { Test } from '@components/test';
-
 import { getPortfolio } from '@store/app/actions';
 
 import styles from '../styles/Home.module.css';
@@ -22,7 +20,6 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
-          <Test/>
         <img src="/logo.svg" className={styles.logo} alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

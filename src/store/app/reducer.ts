@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     portfolio: {
+        instruments: {},
         positions: null,
         roubleBalance: null,
         usdBalance: null,
     },
     portfolioCurrencies: null,
-    currenciesCourses: null,
+    currenciesCourses: {},
+    operations: null,
 };
 
 export const appSlice = createSlice({
@@ -32,7 +34,10 @@ export const appSlice = createSlice({
             state.portfolio.usdBalance = Math.ceil(mappedPositions
                 .filter(({ currency }) => currency === 'USD')
                 .reduce((acc, { quantity }) => acc + quantity, 0) * 100) / 100;
-            state.portfolio.positions = payload;
+
+            payload.forEach((instrument) => {
+                state.portfolio.instruments[instrument.ticker] = instrument;
+            });
         },
         savePortfolioCurrencies: (state, { payload }) => {
             state.portfolioCurrencies = payload;
@@ -42,6 +47,9 @@ export const appSlice = createSlice({
                 ...state.currenciesCourses,
                 ...payload,
             };
+        },
+        saveOperations: (state, { payload }) => {
+            state.operations = payload.operations;
         },
     },
 });

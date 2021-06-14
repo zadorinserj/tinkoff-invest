@@ -7,6 +7,7 @@ export const {
     savePortfolio,
     savePortfolioCurrencies,
     saveCurrenciesCourses,
+    saveOperations,
 } = actions;
 
 const tinkoffApi = getTinkoffApi();
@@ -25,13 +26,13 @@ export const getPortfolio = () => async (dispatch, getStore) => {
 export const getOperations = (
     firstDate: string = '01.01.2020',
     lastDate: string = '01.01.2025',
-) => async (dispatch, getStore) => {
-    const response = await tinkoffApi.getOperations({
+) => async (dispatch) => {
+    const operations = await tinkoffApi.getOperations({
         from: new Date(firstDate).toISOString(),
         to: new Date(lastDate).toISOString(),
     });
 
-    console.log(response);
+    dispatch(saveOperations(operations))
 };
 
 export const getCurrenciesCourse = (ticker: Currency) => async (dispatch, getStore) => {
@@ -40,6 +41,20 @@ export const getCurrenciesCourse = (ticker: Currency) => async (dispatch, getSto
     dispatch(saveCurrenciesCourses({
         [ticker]: response,
     }))
+};
+
+export const getCandles = () => async (dispatch, getStore) => {
+    const from = new Date('01.01.2018');
+    const to = new Date(Date.now());
+
+    const response = await tinkoffApi.getCandles({
+        from: from.toISOString(),
+        to: to.toISOString(),
+        figi: 'BBG000DHPN63',
+        interval: 'month',
+    });
+
+    console.log(response);
 };
 
 export const updateApplication = () => async (dispatch, getStore) => {

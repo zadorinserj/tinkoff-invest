@@ -10,6 +10,8 @@ import {
     Operations,
     Currencies,
     OrderBook,
+    CandleInterval,
+    CandlesResponse,
 } from './types';
 
 export const getTinkoffApi = () => {
@@ -117,10 +119,14 @@ export const getTinkoffApi = () => {
      * @param figi Figi-идентификатор инструмента
      * @param interval интервал для свечи
      */
-    const getCandles = ({ from, to, figi, interval = '1min', }) =>
-        makeRequest('/market/candles', {
-            query: { from, to, figi, interval },
-        });
+    const getCandles = ({ from, to, figi, interval = '1min', }: {
+        from: string;
+        to: string;
+        figi: string;
+        interval: CandleInterval;
+    }): Promise<CandlesResponse> => makeRequest('/market/candles', {
+        query: { from, to, figi, interval },
+    });
 
     /**
      * Метод для получения операций по цб по инструменту
